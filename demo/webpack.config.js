@@ -17,7 +17,7 @@ module.exports = {
         // 打包后文件的文件
         filename: "bundle.js",
 
-        // 告诉webpack不使用箭头
+        // 告诉webpack不使用箭头，希望兼容ie
         environment:{
             arrowFunction: false,
             const: false
