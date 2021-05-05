@@ -77,7 +77,7 @@ class GameControl {
     }
 
     // 开启一个定时器
-    this.isLive && setTimeout(this.run.bind(this),300 - (this.scorelPanel.level - 1)*30);
+    //this.isLive && setTimeout(this.run.bind(this),300 - (this.scorelPanel.level - 1)*30);
   }
   // 检查蛇是否吃到食物
   checkEat(X:number, Y:number) {
