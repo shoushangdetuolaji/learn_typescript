@@ -15,6 +15,8 @@ class GameControl {
   
   // 创建一个属性来储存蛇的移动方向「也就是按键方向」
   direction: string = '';
+  // 创建一个属性用来记录游戏是否结束
+  isLive = true;
 
   constructor() {
     this.snake = new Snake();
@@ -62,9 +64,32 @@ class GameControl {
         X += 10;
         break;
     }
-    // update
-    this.snake.X = X;
-    this.snake.Y = Y;
+    // 检查蛇是否吃到了食物
+    this.checkEat(X,Y);
+    // update x&y
+    try {
+      this.snake.X = X;
+      this.snake.Y = Y; 
+    } catch(e) {
+      // timeover
+      alert(e.message + ' game over!');
+      this.isLive = false;
+    }
+
+    // 开启一个定时器
+    //this.isLive && setTimeout(this.run.bind(this),300 - (this.scorelPanel.level - 1)*30);
+  }
+  // 检查蛇是否吃到食物
+  checkEat(X:number, Y:number) {
+    if( X === this.food.X && Y ===  this.food.Y) {
+      // 食物位置要进行重制
+      this.food.change();
+      // 分数增加
+      this.scorelPanel.addScore();
+      // 蛇要增加一节
+      this.snake.addBody();
+    }
+    
   }
 }
 
