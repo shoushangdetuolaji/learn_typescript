@@ -22,10 +22,20 @@ class Snake {
   }
 
   set X(value:number) {
+    if (this.X === value) return;
+    this.isDead(value);
     this.head.style.left = value + 'px';
   }
   set Y(value:number) {
+    if (this.Y === value) return;
+    this.isDead(value);
     this.head.style.top =  value + 'px';
+  }
+  // 判断是否生死
+  isDead(value:number) {
+    if(value < 0 || value > 290) {
+      throw new Error('🐍撞🧱了');
+    }
   }
   // 蛇增加身体的方法
   addBody() {
